@@ -12,6 +12,14 @@ export default function App() {
     setCount(count - 1);
   };
 
+  let label;
+
+    if (count >= 0) {
+      label = count;
+    } else if (count < 0) {
+      label = "お疲れ様でした";
+    }
+
   let message;
 
   if (count === 75) {
@@ -20,26 +28,30 @@ export default function App() {
     message = "がんばれ！";
   } else if (count === 25) {
     message = "もうすこし！";
-  } else {
+  } else if (count === 0) {
     message = "おめでとう！";
   }
 
-  const imageArray = [egg1, egg2, egg3];
-  let eggImage = imageArray[0];
-
+  // const imageArray = [egg1, egg2, egg3];
+  let eggImage;
   const number = count;
 
-  if (count === 100) {
-    eggImage = imageArray[3];
-  } else if (count < 99 && count > 0) {
-    eggImage = imageArray[2];
-  } else {
-    eggImage = imageArray[1];
+  if (number === 0 ) {
+    eggImage = egg3;
+  } else if (number <= 90 && number > 0) {
+    eggImage = egg2;
+  } else if (number <= 100) {
+    eggImage = egg1;
   }
 
   return (
     <View style={styles.container}>
-      <View></View>
+      <Text style={styles.num}>{label}</Text>
+      <Pressable onPress={countDown}>
+        <Image source={eggImage} style={styles.eggImage}></Image>
+      </Pressable>
+
+  <Text style={styles.mess}>{message}</Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -52,14 +64,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  message: {
-    fontSize: 50,
-  },
   eggImage: {
     width: 300,
-    heigth: 300,
+    height: 300,
     resizeMode: "contain",
   },
+  count: {
+    fontSize: 100,
+  },
+  mess: {
+    fontSize: 50,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  num: {
+    fontSize: 50,
+  }
 });
-
-
