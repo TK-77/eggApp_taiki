@@ -11,8 +11,8 @@ export default function App() {
   const countDown = () => {
     setCount(count - 1);
   };
-
-  let label;
+  
+  let label: any = count;
 
     if (count >= 0) {
       label = count;
@@ -32,11 +32,10 @@ export default function App() {
     message = "おめでとう！";
   }
 
-  // const imageArray = [egg1, egg2, egg3];
   let eggImage;
   const number = count;
 
-  if (number === 0 ) {
+  if (number <= 0 ) {
     eggImage = egg3;
   } else if (number <= 90 && number > 0) {
     eggImage = egg2;
